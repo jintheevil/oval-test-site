@@ -1,0 +1,28 @@
+'use client';
+import {useEffect, useState} from 'react';
+import {Image, Spinner} from "@nextui-org/react";
+import { getDownloadURL, ref } from '@firebase/storage';
+import { storage } from '@/firebase';
+
+export default function ProductImage({ productImgPath }: { productImgPath: string }) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const getImage = async (url: string) => {
+    try {
+      const storageRef = ref(storage, url);
+      const imageUrl = await getDownloadURL(storageRef); // Fix here, use a different variable name
+      setImageUrl(imageUrl);
+    } catch (error) {
+      console.error('Error getting image URL:', error);
+    }
+  };
+
+  // Fetch the image URL when the component is rendered
+  useEffect(() => {
+    if (!imageUrl) {
+      getImage(productImgPath);
+    }
+  }, [imageUrl, productImgPath]);
+
+  return imageUrl ? <Image className={"h-[auto] w-auto"} src={imageUrl} alt="#"/> : <Spinner size={"lg"}></Spinner>;
+}
