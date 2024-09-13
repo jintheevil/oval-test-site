@@ -1,29 +1,32 @@
 import {Card, CardBody, CardHeader, Divider, Textarea} from "@nextui-org/react";
 import {Input} from "@nextui-org/input";
+import {APIProvider, Map, Marker} from "@vis.gl/react-google-maps";
 
 export default function MainContact() {
+
+  const center = {
+    lat: 3.116361618041992,
+    lng: 101.59452819824219,
+  };
+
   return (
-      <main id={"contact"}>
+      <main id={"contact"} className={"w-full"}>
         <div className={"w-full mt-10 grid grid-cols-2"}>
-          <div className={"w-[100%] p-10 bg-[#fafafa] grid place-items-center text-center"}>
-            <h1 className={"text-black text-4xl"}>Contact us</h1>
-            <Divider className={"m-10"}></Divider>
-            <form className={"w-full grid gap-10 text-black"}>
-              <div className={"grid grid-cols-2 gap-10"}>
-                <Input variant={"bordered"} fullWidth={true} label={"Name"}></Input>
-                <Input variant={"bordered"} label={"Company"}></Input>
-              </div>
-              <div className={"grid grid-cols-2 gap-10"}>
-                <Input variant={"bordered"} fullWidth={true} label={"Phone"}></Input>
-                <Input variant={"bordered"} label={"Email"}></Input>
-              </div>
-              <Textarea variant={"bordered"} label={"Enquiries"} placeholder={"Let us know what you think!"}></Textarea>
-            </form>
-          </div>
+          <APIProvider apiKey={"AIzaSyBYHrOF_v4QYXVmRVh5A6-LuW4QocJOQDk"}>
+            <Map
+                defaultCenter={center}
+                defaultZoom={17}
+            >
+              <Marker
+                  position={center}
+                  clickable={true}
+              ></Marker>
+            </Map>
+          </APIProvider>
           <div className={"w-full p-8 bg-[#fafafa] grid place-items-center text-center"}>
             <Card className={"w-full h-full p-10"}>
               <CardHeader>
-                <h1 className={"text-4xl"}>Our Office</h1>
+                <h1 className={"text-3xl"}>Our Office</h1>
               </CardHeader>
               <Divider className={"my-10"}></Divider>
               <CardBody>
@@ -49,6 +52,24 @@ export default function MainContact() {
               </CardBody>
             </Card>
           </div>
+        </div>
+        <div className={"w-[100%] p-10 bg-[#fafafa] grid place-items-center text-center"}>
+          <h1 className={"text-black text-3xl"}>Contact us</h1>
+          <small className={"mt-2"}>
+            For any inquiries, questions or commendations, please call: <b>+603-78035578</b> or fill out the following form
+          </small>
+          <Divider className={"mb-10 mx-10 mt-4"}></Divider>
+          <form className={"w-full grid gap-10 text-black"}>
+            <div className={"grid grid-cols-2 gap-10"}>
+              <Input variant={"bordered"} fullWidth={true} label={"Name"}></Input>
+              <Input variant={"bordered"} label={"Company"}></Input>
+            </div>
+            <div className={"grid grid-cols-2 gap-10"}>
+              <Input variant={"bordered"} fullWidth={true} label={"Phone"}></Input>
+              <Input variant={"bordered"} label={"Email"}></Input>
+            </div>
+            <Textarea variant={"bordered"} label={"Enquiries"} placeholder={"Let us know what you think!"}></Textarea>
+          </form>
         </div>
       </main>
   )

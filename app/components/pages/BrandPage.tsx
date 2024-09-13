@@ -3,9 +3,10 @@
 import {Card, CardBody, CardHeader, Divider, Link, Spinner} from "@nextui-org/react";
 import Image from "next/image";
 import HeroImage from "@/public/assets/pexels-tom-fisk-10396416.jpg";
+import TestProduct from "@/public/assets/oval/8fe2aa_f2317a9e25f24919a739234b085b7055~mv2.jpg";
 import {useEffect, useState} from "react";
-import {collection, getDocs} from "@firebase/firestore";
-import {db} from "@/firebase";
+// import {collection, getDocs} from "@firebase/firestore";
+// import {db} from "@/firebase";
 import {SubProducts} from "@/app/types";
 import ProductImage from "@/app/components/ProductImage";
 
@@ -14,40 +15,45 @@ type Params = {
 }
 
 export default function BrandPage({ params }: { params: Params }) {
-  const [products, setProducts] = useState<SubProducts[]>([]);
+  const [products, setProducts] = useState<SubProducts[]>([
+    {
+      productName: 'FLOWMETERS',
+      id: '1',
+      productDesc: 'Positive Displacement Flowmeters',
+      productImgPath: TestProduct,
+    }
+  ]);
   const [loading, setLoading] = useState(false);
 
   const paramName = (name: string) => {
     return name.toLowerCase().replaceAll(" ", "-");
   }
 
-  useEffect(() => {
-    console.log(params)
-    const getProducts = async () => {
-      try {
-        setLoading(true);
-        const queryCollection = collection(db, "products", params.brand.replace('%20', ' '), "catalogue");
-        const productsData: SubProducts[] = [];
-        const querySnapshot = await getDocs(queryCollection);
-
-        console.log(queryCollection)
-        querySnapshot.forEach((doc) => {
-          productsData.push({
-            id: doc.id,
-            ...doc.data()
-          } as SubProducts);
-        });
-
-        // Update state with fetched products
-        setProducts(productsData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    getProducts();
-  }, [params, params.brand]);
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const queryCollection = collection(db, "products", params.brand.replace('%20', ' '), "catalogue");
+  //       const productsData: SubProducts[] = [];
+  //       const querySnapshot = await getDocs(queryCollection);
+  //
+  //       querySnapshot.forEach((doc) => {
+  //         productsData.push({
+  //           id: doc.id,
+  //           ...doc.data()
+  //         } as SubProducts);
+  //       });
+  //
+  //       // Update state with fetched products
+  //       setProducts(productsData);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
+  //
+  //   getProducts();
+  // }, [params, params.brand]);
 
   return (
       <div className={"min-h-[100dvh] bg-gray-100 text-black px-40 pb-10"}>

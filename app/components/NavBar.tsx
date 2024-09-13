@@ -231,7 +231,7 @@ export default function NavBar() {
   }, [dispatch, initialLoading]);
 
   return (
-      <div className={"flex gap-8 text-gray-500 text-xl"}>
+      <div className={"flex gap-8 text-gray-500 text-l"}>
         <Link className={"grid place-items-center"} href={"/"}>HOME</Link>
         <div className={"grid place-items-center"}>
           <div className={"cursor-pointer dropdown"}>

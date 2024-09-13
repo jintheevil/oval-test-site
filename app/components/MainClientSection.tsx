@@ -24,7 +24,9 @@ import scientex from "@/public/assets/clients/8fe2aa_2bfd486b397941bd93d057b97f9
 import synthomer from "@/public/assets/clients/8fe2aa_9eeedaffaf0142c2bbc5897d6ace730b~mv2.gif"
 import lotte from "@/public/assets/clients/8fe2aa_ec50ffc094ae44e5ba6f1eb9f8a4f7f2~mv2.gif"
 import Image from "next/image";
-
+import '@splidejs/react-splide/css';
+// @ts-ignore
+import {Splide, SplideSlide} from "@splidejs/react-splide";
 
 export default function MainClientSection() {
   const clients = [
@@ -52,18 +54,34 @@ export default function MainClientSection() {
       polyplastics,
       ibiden,
   ]
+
   return (
       <main id={"clients"}>
         <div className={"w-full bg-[#fafafa] grid place-items-center py-10 mt-10"}>
           <div className={"w-[80%] min-w-[400px] grid place-items-center"}>
-            <h1 className={"text-4xl text-black"}>Clients</h1>
+            <h1 className={"text-3xl text-black"}>Clients</h1>
             <Divider className={"m-10"}></Divider>
-            <div className={"w-full grid grid-cols-2 lg:grid-cols-4 gap-4 place-items-center"}>
-              {clients.map((client, index) => {
-                return (
-                    <Image key={index} src={client} alt={"#"}></Image>
-                )
-              })}
+            <div className={"slider-container w-full grid place-items-center"}>
+              <Splide
+                  options={{
+                    autoplay: true,
+                    rewind: true,
+                    width: '100%',
+                    gap: "2rem",
+                    perPage: 6,
+                    interval: 3000,
+                  }}
+              >
+                {
+                  clients.map((client, index) => {
+                    return (
+                        <SplideSlide key={index} className={"grid place-items-center"}>
+                          <Image src={client} alt={'#'}></Image>
+                        </SplideSlide>
+                    )
+                  })
+                }
+              </Splide>
             </div>
           </div>
         </div>

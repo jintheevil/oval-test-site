@@ -1,3 +1,5 @@
+import {StaticImageData} from "next/image";
+
 type Products = {
   brandName: string,
   id: string,
@@ -8,7 +10,7 @@ type SubProducts = {
   id: string,
   productName: string,
   productDesc: string,
-  productImgPath?: string,
+  productImgPath?: StaticImageData,
   productImgPathTransformed?: string
 }
 
