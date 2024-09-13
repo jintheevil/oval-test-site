@@ -73,6 +73,8 @@ export default function MainClientSection() {
                     perPage: 6,
                     autoScroll: {
                       speed: 3,
+                      autoStart: true,
+                      rewind: true,
                     }
                     // interval: 3000,
                   }}
