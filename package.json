@@ -14,6 +14,7 @@
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@reduxjs/toolkit": "^2.2.2",
     "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@types/react-slick": "^0.23.13",
     "@vis.gl/react-google-maps": "^0.8.3",
     "animate.css": "^4.1.1",

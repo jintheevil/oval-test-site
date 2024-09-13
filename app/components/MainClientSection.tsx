@@ -27,6 +27,7 @@ import Image from "next/image";
 import '@splidejs/react-splide/css';
 // @ts-ignore
 import {Splide, SplideSlide} from "@splidejs/react-splide";
+import {AutoScroll} from "@splidejs/splide-extension-auto-scroll";
 
 export default function MainClientSection() {
   const clients = [
@@ -63,13 +64,17 @@ export default function MainClientSection() {
             <Divider className={"m-10"}></Divider>
             <div className={"slider-container w-full grid place-items-center"}>
               <Splide
+                  extensions={{AutoScroll}}
                   options={{
-                    autoplay: true,
+                    // autoplay: true,
                     rewind: true,
                     width: '100%',
                     gap: "2rem",
                     perPage: 6,
-                    interval: 3000,
+                    autoScroll: {
+                      speed: 3,
+                    }
+                    // interval: 3000,
                   }}
               >
                 {
