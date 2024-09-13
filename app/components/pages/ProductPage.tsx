@@ -31,7 +31,11 @@ export default function ProductPage({params}: {params: Params}) {
     productPageSectionImg: null as unknown as StaticImageData,
     productPageImgPath: TestImage1,
     productPageSectionTitle2: "Features",
-    productPageSectionDesc2: "Enlarged display! Easily viewable!",
+    productPageSectionDesc2: "●Bar graph display enables intuitive confirmation of instantaneous flowrate!\n" +
+        "●Easily viewable, large unit display!\n" +
+        "●Highly sensitive touch sensor has been introduced! Operable with your gloves on, even in the rain!\n" +
+        "●Predicts aging deterioration of the flowmeter body and notifies the maintenance timing!\n" +
+        "●Detects disconnection of sensor wire and notifies sensor failure!",
     productPageSectionImg2: TestImage2,
     productPageSectionTitle3: "GENERAL SPECIFICATIONS",
     productPageSectionDesc3: "",
@@ -123,7 +127,12 @@ export default function ProductPage({params}: {params: Params}) {
                 <Divider></Divider>
                 <CardBody className={"p-5"}>
                     <p>
-                      {product.productPageSectionDesc2}
+                      {product.productPageSectionDesc2.split('\n').map((line, index) => (
+                          <span key={index}>
+        {line}
+                            <br />
+      </span>
+                      ))}
                     </p>
                     <div>
                         <ProductPageImage productImgPath={product.productPageSectionImg2}></ProductPageImage>
